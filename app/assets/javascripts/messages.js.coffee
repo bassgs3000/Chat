@@ -40,14 +40,6 @@ currentids = []
 
 
 jQuery ->
-  #alert "DOM is loaded" Sanity check
-  MessagePoller.initialRequest()
-  MessagePoller.poll()
-  $('#message_content').keypress((e) ->
-    if e.which is 13
-      MessagePoller.submit()
-  )
-
-
-
-
+  PrivatePub.subscribe "/messages/new", (data, channel) ->
+    $('.messages').append(data.content)
+  $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000)

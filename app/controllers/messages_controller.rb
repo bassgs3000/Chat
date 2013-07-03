@@ -10,14 +10,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(params[:message].merge(username: current_user.username))
-
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to messages_path }
-      else
-        format.html { redirect_to messages_path, notice: "Error submitting message" }
-      end
-    end
+    @message = Message.create!(params[:message].merge(username: current_user.username))
+    PrivatePub.publish_to("/message/new", message: @message)
   end
 end

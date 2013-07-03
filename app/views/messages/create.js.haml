@@ -1,0 +1,5 @@
+- publish_to "/messages/new" do
+  $(".messages").append('<div class="message">' + #{@message.username} + ": " + #{@message.content} + "</div>");
+$('form#new_message')[0].reset();
+MessagePoller.request()
+$(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000)

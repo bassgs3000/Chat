@@ -6,6 +6,8 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'simple_form'
 gem 'haml-rails'
+gem 'private_pub'
+gem 'thin'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
@@ -23,10 +25,9 @@ end
 
 group :development, :test do
   gem 'sqlite3'
-  gem 'thin'
   gem 'rspec-rails'
 end
 
 group :production do
-    gem 'mysql2'
+  gem 'mysql2'
 end
