@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-  alert "DOM is loaded"
+  #alert "DOM is loaded" Sanity check
