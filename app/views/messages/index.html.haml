@@ -1,21 +1,20 @@
-.container
-  .row
-    %h2 Chat
-    - if user_signed_in?
-      Signed in as #{current_user.username}
-      = link_to 'Sign out', destroy_user_session_path, method: :delete
-    - else
-      = link_to 'Sign in', new_user_session_path
-      |
-      = link_to 'Sign up', new_user_registration_path
-
-    %br
-    .messages
-      - @messages.each do |msg|
-        .message
-          = msg.username + ": "
-          = msg.content
-          %br
+.row
+  %h2 Chat
   - if user_signed_in?
-    .row
-      .chatform= render 'form'
+    Signed in as #{current_user.username}
+    = link_to 'Sign out', destroy_user_session_path, method: :delete
+  - else
+    = link_to 'Sign in', new_user_session_path
+    |
+    = link_to 'Sign up', new_user_registration_path
+
+  %br
+  .messages{ data: {url: messages_path, format: :json} }
+    - @messages.each do |msg|
+      .message
+        = msg.username + ": "
+        = msg.content
+        %br
+- if user_signed_in?
+  .row
+    .chatform= render 'form'
