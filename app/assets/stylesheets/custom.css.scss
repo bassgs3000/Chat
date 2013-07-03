@@ -1,0 +1,22 @@
+@import "bootstrap";
+
+
+.content{
+  margin-top: 5px;
+}
+
+.messages{
+  border-style: solid;
+  border-width: 1px;
+  height: 225px;
+  width: 525px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.message{
+  margin-left: 2px;
+}
+
+#message_content{
+  width: 510px;
+}
