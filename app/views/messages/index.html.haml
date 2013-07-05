@@ -1,4 +1,4 @@
-.row
+.row-fluid
   %h2 Chat
   - if user_signed_in?
     Signed in as #{current_user.username}
@@ -7,16 +7,17 @@
     = link_to 'Sign in', new_user_session_path
     |
     = link_to 'Sign up', new_user_registration_path
-
   %br
-  .messages{ data: {url: messages_path, format: :json} }
+
+- if user_signed_in?
+  .messages
     - @messages.each do |msg|
       .message
         = msg.username + ": "
         = msg.content
         %br
-- if user_signed_in?
-  .row
+
+  .row-fluid
     .chatform= render 'form'
 
-= subscribe_to "/messages/new"
+  = subscribe_to "/messages/new"

@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def index
     @messages = Message.all
-    @message = Message.new #For the form partial.
+    @msg = Message.new #For the form partial.
     
     respond_to do |format|
       format.html
@@ -10,7 +10,15 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.create!(params[:message].merge(username: current_user.username))
-    PrivatePub.publish_to("/message/new", chat_message: "Test")
+    @message = Message.new(params[:message].merge(username: current_user.username))
+    respond_to do |format|
+      if @message.save
+        format.js
+        format.html { redirect_to messages_path }
+      else
+        format.js
+        format.html { redirect_to messages_path }
+      end
+    end
   end
 end
