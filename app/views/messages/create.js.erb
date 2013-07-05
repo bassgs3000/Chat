@@ -1,5 +1,6 @@
 <% publish_to "/messages/new" do %>
   $(".messages").append('<div class="message"><%= escape_javascript @message.username %>: <%= escape_javascript @message.content %></div>');
+  $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000)
 <% end %>
 $('form#new_message')[0].reset();
 $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000)
