@@ -11,6 +11,6 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.create!(params[:message].merge(username: current_user.username))
-    PrivatePub.publish_to("/message/new", message: @message)
+    PrivatePub.publish_to("/message/new", chat_message: "Test")
   end
 end
