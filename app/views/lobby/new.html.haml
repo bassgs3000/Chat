@@ -1,0 +1,6 @@
+.row-fluid
+  = simple_form_for @chatroom, url: url_for(action: "create", controller: "lobby") do |f|
+    = f.input :name
+    = f.input :identifier
+    = f.input :private
+    = f.button :submit
