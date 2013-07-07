@@ -1,9 +1,11 @@
 .row-fluid
   %h2 Lobby
+  Session info: 
+  %span#debug= session[:chat_identifier]
   .chatrooms
     - @chatrooms.each do |chatroom|
       .chatroom{data: chatroom.identifier}
-        = link_to chatroom.name, "#"
+        = link_to chatroom.name, messages_path
 
   %br       
   = link_to "New Chatroom", new_chatroom_path

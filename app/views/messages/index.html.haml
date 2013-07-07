@@ -10,6 +10,11 @@
   %br
 
 - if user_signed_in?
+  Session info: 
+  %span#debug= session[:chat_identifier]
+
+  %br
+  = link_to "Return to Lobby", lobby_path
   .messages
     - @messages.each do |msg|
       .message
