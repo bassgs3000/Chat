@@ -10,5 +10,5 @@ Chat::Application.routes.draw do
   match "messages" => "messages#index", via: [:get]
   match "messages" => "messages#create", via: [:post]
 
-  root to: "messages#index"
+  root to: "lobby#index"
 end
