@@ -1,11 +1,28 @@
 .row-fluid
   %h2 Lobby
+  - if user_signed_in?
+    Signed in as #{current_user.username}
+    = link_to 'Sign out', destroy_user_session_path, method: :delete
+  - else
+    = link_to 'Sign in', new_user_session_path
+    |
+    = link_to 'Sign up', new_user_registration_path
+  %br
   Session info: 
   %span#debug= session[:chat_identifier]
+  %br
+  %br
   .chatrooms
-    - @chatrooms.each do |chatroom|
+    %b Public
+    - @public_chatrooms.each do |chatroom|
       .chatroom{data: chatroom.identifier}
         = link_to chatroom.name, messages_path
+    %br
+    - unless @private_chatrooms.empty?
+      %b Private
+      - @private_chatrooms.each do |chatroom|
+        .chatroom{data: chatroom.identifier}
+          = link_to chatroom.name, messages_path
 
   %br       
   = link_to "New Chatroom", new_chatroom_path

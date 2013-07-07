@@ -1,9 +1,15 @@
 class LobbyController < ApplicationController
   def index
-    @chatrooms = Chatroom.all
-    respond_to do |format|
-      format.js
-      format.html
+    if user_signed_in?
+      @public_chatrooms = Chatroom.where(private: false)
+      @private_chatrooms = Chatroom.where(private: true, created_by: current_user.id)
+    
+      respond_to do |format|
+        format.js
+        format.html
+      end
+    else
+      redirect_to new_user_session_path
     end
   end
 
@@ -15,7 +21,7 @@ class LobbyController < ApplicationController
   end
 
   def create
-    @chatroom = Chatroom.new(params[:chatroom])
+    @chatroom = Chatroom.new(params[:chatroom].merge(created_by: current_user.id))
 
     respond_to do |format|
       if @chatroom.save

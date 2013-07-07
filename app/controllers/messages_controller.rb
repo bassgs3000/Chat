@@ -2,7 +2,7 @@ class MessagesController < ApplicationController
   def index
     
 
-    @messages = Message.all
+    @messages = Message.find_all_by_identifier(session[:chat_identifier])
     @msg = Message.new #For the form partial.
     if session[:chat_identifier].nil?
       redirect_to lobby_path
@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new(params[:message].merge(username: current_user.username))
+    @message = Message.new(params[:message].merge(username: current_user.username, identifier: session[:chat_identifier]))
     respond_to do |format|
       if @message.save
         format.js
