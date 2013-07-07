@@ -3,6 +3,10 @@
   - if user_signed_in?
     Signed in as #{current_user.username}
     = link_to 'Sign out', destroy_user_session_path, method: :delete
+    - if @room.private?
+      #invite= link_to 'Add user to private chatroom', "#"
+      #invitequery= text_field_tag 'inviteform', nil, placeholder: "Enter username"
+
   - else
     = link_to 'Sign in', new_user_session_path
     |

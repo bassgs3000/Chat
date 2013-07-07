@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    
-
+    @room = Chatroom.find_by_identifier(session[:chat_identifier])
     @messages = Message.find_all_by_identifier(session[:chat_identifier])
     @msg = Message.new #For the form partial.
     if session[:chat_identifier].nil?
