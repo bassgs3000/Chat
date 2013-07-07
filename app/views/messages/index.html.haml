@@ -25,4 +25,4 @@
   .row-fluid
     .chatform= render 'form'
 
-  = subscribe_to "/messages/new"
+  = subscribe_to "/" + session[:chat_identifier]

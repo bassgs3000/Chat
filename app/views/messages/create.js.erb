@@ -1,4 +1,5 @@
-<% publish_to "/messages/new" do %>
+<% publish_path = "/" + session[:chat_identifier] %>
+<% publish_to publish_path do %>
   $(".messages").append('<div class="message"><%= escape_javascript @message.username %>: <%= escape_javascript @message.content %></div>');
   $(".messages").animate({ scrollTop: $('.messages')[0].scrollHeight}, 1000)
 <% end %>

@@ -1,11 +1,16 @@
 class MessagesController < ApplicationController
   def index
+    
+
     @messages = Message.all
     @msg = Message.new #For the form partial.
-    
-    respond_to do |format|
-      format.html
-      format.json { render json: @messages }
+    if session[:chat_identifier].nil?
+      redirect_to lobby_path
+    else
+      respond_to do |format|
+        format.html
+        format.json { render json: @messages }
+      end
     end
   end
 
