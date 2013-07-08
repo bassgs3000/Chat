@@ -5,6 +5,8 @@ class MessagesController < ApplicationController
     @msg = Message.new #For the form partial.
     @private = @room.private?
     @owner = User.find_by_id(@room.created_by)
+    @members = @room.users
+
     
     if session[:chat_identifier].nil?
       redirect_to lobby_path

@@ -28,8 +28,13 @@
   - if @private
     .members.inline
       .member= "*"+@owner.username
-      .member Steve
-      .member Bob
+      - @members.each do |member|
+        - unless member.id == @owner.id
+          .member
+            = member.username
+
+
+
   %br.clearBoth
 
   .row-fluid
