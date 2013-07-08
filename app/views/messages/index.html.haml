@@ -16,15 +16,21 @@
 - if user_signed_in?
   Session info: 
   %span#debug= session[:chat_identifier]
-
   %br
   = link_to "Return to Lobby", lobby_path
-  .messages
+  %br
+  .messages.inline
     - @messages.each do |msg|
       .message
         = msg.username + ": "
         = msg.content
         %br
+  - if @private
+    .members.inline
+      .member= "*"+@owner.username
+      .member Steve
+      .member Bob
+  %br.clearBoth
 
   .row-fluid
     .chatform= render 'form'

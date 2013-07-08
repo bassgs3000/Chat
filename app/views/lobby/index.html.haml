@@ -13,12 +13,14 @@
   %br
   %br
   .chatrooms
-    %b Public
-    - @public_chatrooms.each do |chatroom|
-      .chatroom{data: chatroom.identifier}
-        = link_to chatroom.name, messages_path
-    %br
+    - unless @public_chatrooms.empty?
+      %b Public
+      - @public_chatrooms.each do |chatroom|
+        .chatroom{data: chatroom.identifier}
+          = link_to chatroom.name, messages_path
+    
     - unless @private_chatrooms.empty?
+      %br
       %b Private
       - @private_chatrooms.each do |chatroom|
         .chatroom{data: chatroom.identifier}

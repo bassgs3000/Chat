@@ -1,8 +1,9 @@
 class Chatroom < ActiveRecord::Base
   attr_accessible :identifier, :name, :private, :created_by, :shared_with
-  serialize :shared_with
   validate :add_username_to_private_identifier, before: :create
   validate :ensure_no_whitespaces, before: :create
+  has_many :chatroom_members
+  has_many :users, through: :chatroom_members
   
 
   validates :name, presence: true
