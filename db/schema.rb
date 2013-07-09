@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708171448) do
+ActiveRecord::Schema.define(:version => 20130709210026) do
 
   create_table "chatroom_members", :force => true do |t|
     t.integer  "user_id"
     t.integer  "chatroom_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.boolean  "private"
   end
 
   create_table "chatrooms", :force => true do |t|

@@ -34,10 +34,11 @@ class MessagesController < ApplicationController
   def invite
     @user = User.find_by_username(params[:invite])
     @room = Chatroom.find_by_identifier(session[:chat_identifier])
+    @private = @room.private?
     @owner = User.find_by_id(@room.created_by)
     @members = @room.users
     if @user
-      @member = ChatroomMember.new(user_id: @user.id, chatroom_id: @room.id)
+      @member = ChatroomMember.new(user_id: @user.id, chatroom_id: @room.id, private: @private)
       respond_to do |format|
         if @member.save
           format.js
