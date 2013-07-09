@@ -1,0 +1,5 @@
+.member= "*"+@owner.username
+- @members.each do |member|
+  - unless member.id == @owner.id
+    .member
+      = member.username

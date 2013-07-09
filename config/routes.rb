@@ -9,6 +9,7 @@ Chat::Application.routes.draw do
   
   match "messages" => "messages#index", via: [:get]
   match "messages" => "messages#create", via: [:post]
+  match "messages/invite" => "messages#invite", via: [:get,:post]
 
   root to: "lobby#index"
 end

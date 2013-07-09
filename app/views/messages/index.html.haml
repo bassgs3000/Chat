@@ -5,7 +5,7 @@
     = link_to 'Sign out', destroy_user_session_path, method: :delete
     - if @room.private?
       #invite= link_to 'Add user to private chatroom', "#"
-      #invitequery= text_field_tag 'inviteform', nil, placeholder: "Enter username"
+      #invitequery= text_field_tag 'inviteform', "", placeholder: "Enter username"
 
   - else
     = link_to 'Sign in', new_user_session_path
@@ -19,22 +19,9 @@
   %br
   = link_to "Return to Lobby", lobby_path
   %br
-  .messages.inline
-    - @messages.each do |msg|
-      .message
-        = msg.username + ": "
-        = msg.content
-        %br
+  .messages.inline= render 'messages'
   - if @private
-    .members.inline
-      .member= "*"+@owner.username
-      - @members.each do |member|
-        - unless member.id == @owner.id
-          .member
-            = member.username
-
-
-
+    .members.inline= render 'members'
   %br.clearBoth
 
   .row-fluid

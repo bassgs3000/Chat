@@ -30,4 +30,31 @@ class MessagesController < ApplicationController
       end
     end
   end
+
+  def invite
+    @user = User.find_by_username(params[:invite])
+    @room = Chatroom.find_by_identifier(session[:chat_identifier])
+    @owner = User.find_by_id(@room.created_by)
+    @members = @room.users
+    if @user
+      @member = ChatroomMember.new(user_id: @user.id, chatroom_id: @room.id)
+      respond_to do |format|
+        if @member.save
+          format.js
+          format.html { render partial: '/messages/members', layout: false }
+          format.json { redirect_to messages_path }
+        else
+          format.js
+          format.html { render partial: '/messages/members', layout: false }
+          format.json { redirect_to messages_path }
+        end
+      end      
+    else
+      respond_to do |format|
+        format.js
+        format.html { render partial: '/messages/members', layout: false }
+        format.json { render nothing: true }
+      end
+    end
+  end
 end
