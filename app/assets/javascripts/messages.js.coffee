@@ -4,6 +4,7 @@ jQuery ->
   $('#invite').click( (e) ->
     e.preventDefault()
     $('#invitequery').toggle()
+    $('#invitequery input').focus()
 
     $('#invitequery input').keypress( (e) ->
       username = $(this).val()
