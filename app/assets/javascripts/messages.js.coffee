@@ -3,7 +3,7 @@ jQuery ->
 
   $('#invite').click( (e) ->
     e.preventDefault()
-    $('#invitequery').show()
+    $('#invitequery').toggle()
 
     $('#invitequery input').keypress( (e) ->
       username = $(this).val()
