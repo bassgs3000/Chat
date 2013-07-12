@@ -25,6 +25,11 @@
   %br.clearBoth
 
   .row-fluid
-    .chatform= render 'form'
+    .chatform.inline= render 'form'
+    - if current_user.id == @owner.id
+      #editmember= link_to "Edit Member", "#"
+      .editmembers.inline= select_tag "users", options_from_collection_for_select(@members, "id", "username"), include_blank: true
+      #rmmember.inline= link_to "Remove Member", '#'
+    %br.clearBoth
 
   = subscribe_to "/" + session[:chat_identifier]

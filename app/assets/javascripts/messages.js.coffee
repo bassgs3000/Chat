@@ -15,3 +15,16 @@ jQuery ->
     )
   )
 
+  $('#editmember a').click( (e) ->
+    e.preventDefault()
+    $('#editmember').hide()
+    $('.editmembers').show()
+    $('#rmmember').show()
+    $('#rmmember a').click( (e) ->
+      $('#editmember').show()
+      $('.editmembers').hide()
+      $('#rmmember').hide()
+      e.preventDefault()
+    )
+  )
+

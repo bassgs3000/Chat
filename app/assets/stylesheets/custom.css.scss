@@ -42,3 +42,28 @@
 #invitequery{
   display: none;
 }
+
+#editmember{
+  margin-top: 8px;
+  a{
+    margin-left: 5px; 
+  }
+}
+
+#rmmember{
+  margin-top: 8px;
+  a{
+    margin-left: 5px;
+  }
+  display: none;
+}
+
+.editmembers{
+  margin-top: 5px;
+  margin-left: 5px;
+  select{
+    width: 144px;
+  }
+  display: none;
+}
+
